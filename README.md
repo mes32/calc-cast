@@ -3,7 +3,7 @@ Server-side calculator that broadcasts calculation history to all users via webs
 
 ## Utilized Web Stack
 - `User Interface` - React, CSS
-- `Client` - React, Redux, Redux-Saga
+- `Client` - React
 - `Server` - Node.js, Express, Socket.io
 - `Database` - PostgreSQL
 
