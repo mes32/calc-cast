@@ -1,12 +1,16 @@
 import React from 'react';
 import './App.css';
 
-function App() {
-  return (
-    <div className="App">
+import CalculationList from '../CalculationList/CalculationList';
+import CalculatorForm from '../CalculatorForm/CalculatorForm';
 
-    </div>
-  );
+function App() {
+    return (
+        <div className="App">
+            <CalculatorForm />
+            <CalculationList />
+        </div>
+    );
 }
 
 export default App;
