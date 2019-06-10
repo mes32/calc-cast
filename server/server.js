@@ -1,5 +1,4 @@
 const express = require('express');
-const bodyParser = require('body-parser');
 const http = require('http');
 const socketIo = require('socket.io');
 
@@ -7,15 +6,14 @@ const app = express();
 const server = http.createServer(app);
 const io = socketIo(server);
 
-// const io = require('socket.io-client')('http://localhost');
+// Serve the static site files from build directory
+app.use(express.static('build'));
 
-// Configure body parser middleware
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
-
-// Setup server-side routers
-const calculationRouter = require('./routes/calculation.router');
-app.use('/api/calculation', calculationRouter);
+// Start the server listening on PORT = 5000
+const PORT = process.env.PORT || 5000;
+server.listen(PORT, () => {
+    console.log(`Listening on port: ${PORT}`);
+});
 
 let tempID = 0;
 const expressionList = [];
@@ -49,12 +47,3 @@ io.on('connect', socket => {
 });
 
 setInterval(() => io.emit('time', new Date().toTimeString()), 1000);
-
-// Serve the static site files
-app.use(express.static('build'));
-
-// Start the server listening on PORT = 5000
-const PORT = process.env.PORT || 5000;
-server.listen(PORT, () => {
-    console.log(`Listening on port: ${PORT}`);
-});
