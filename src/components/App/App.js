@@ -1,19 +1,19 @@
 import React, { Component } from 'react';
-import socketIOClient from 'socket.io-client';
+import io from 'socket.io-client';
 import './App.css';
 
 import CalculationList from '../CalculationList/CalculationList';
 import CalculatorForm from '../CalculatorForm/CalculatorForm';
 
-let endpoint = 'fast-castle-54694.herokuapp.com:443';
-// let endpoint = 'localhost:5000';
+// let endpoint = 'https://fast-castle-54694.herokuapp.com:443';
+let endpoint = 'http://localhost:5000';
 
 class App extends Component {
     constructor() {
         super();
         this.state = {
             timeString: '',
-            socket: socketIOClient(endpoint),
+            socket: io(endpoint),
             expressionList: []
         };
 
