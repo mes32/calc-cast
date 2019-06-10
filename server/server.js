@@ -33,6 +33,8 @@ io.on("connection", socket => {
     socket.on("disconnect", () => console.log("Client disconnected"));
 });
 
+// setInterval(() => io.emit('time', new Date().toTimeString()), 1000);
+
 
 // Start the server listening on PORT = 5000
 const PORT = process.env.PORT || 5000;
