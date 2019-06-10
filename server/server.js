@@ -15,6 +15,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 const calculationRouter = require('./routes/calculation.router');
 app.use('/api/calculation', calculationRouter);
 
+let tempID = 0;
 const expressionList = [];
 
 //Setting up a socket with the namespace 'connection' for new sockets
@@ -32,23 +33,24 @@ io.on('connect', socket => {
     socket.on('submit expression', expr => {
         console.log(expr);
 
-        if (expr.operator = 'ADD') {
-            expr = { ...expr, value: Number(expr.arg1) + Number(expr.arg2) };
+        tempID += 1;
+        if (expr.operator === 'ADD') {
+            expr = { ...expr, id: tempID, value: Number(expr.arg1) + Number(expr.arg2) };
+        } else if (expr.operator === 'SUB') {
+            expr = { ...expr, id: tempID, value: Number(expr.arg1) - Number(expr.arg2) };
+        } else if (expr.operator === 'MUL') {
+            expr = { ...expr, id: tempID, value: Number(expr.arg1) * Number(expr.arg2) };
+        } else if (expr.operator === 'DIV') {
+            expr = { ...expr, id: tempID, value: Number(expr.arg1) / Number(expr.arg2) };
         }
 
         expressionList.push(expr);
-
-        console.log(expressionList);
-
         socket.emit('list expressions', { expressionList: expressionList });
     });
 
     //A special namespace "disconnect" for when a client disconnects
     socket.on("disconnect", () => console.log("Client disconnected"));
 });
-
-
-setInterval(() => io.emit('time', new Date().toTimeString()), 1000);
 
 // Serve the static site files
 app.use(express.static('build'));

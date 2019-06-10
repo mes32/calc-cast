@@ -14,7 +14,6 @@ class App extends Component {
     constructor() {
         super();
         this.state = {
-            timeString: '',
             socket: socketIOClient(endpoint),
             expressionList: []
         };
@@ -25,10 +24,6 @@ class App extends Component {
         //     this.setState({ response: data.num });
         //     console.log(`data.num = ${data.num}`);
         // });
-
-        this.state.socket.on('time', timeString => {
-            this.setState({ ...this.state, timeString: timeString + '' });
-        });
 
         this.state.socket.on('list expressions', response => {
             console.log(`list expressions: ${response.expressionList}`);
@@ -58,11 +53,7 @@ class App extends Component {
             <div className="App">
                 <h1>Calc Cast</h1>
                 <CalculatorForm submitExpression={this.submitExpression} />
-                <CalculationList />
-
-                {JSON.stringify(this.state.expressionList)}
-
-                <p>timeString = {this.state.timeString} </p>
+                <CalculationList list={this.state.expressionList} />
             </div>
         );
     }

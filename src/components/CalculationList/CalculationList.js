@@ -1,10 +1,22 @@
 import React from 'react';
 
-function CalculationList() {
+import CalculationListRow from './CalculationListRow/CalculationListRow';
+
+function CalculationList(props) {
     return (
-        <div>
-            <p>[ CalculationList ]</p>
-        </div>
+        <table>
+            <thead>
+                <tr>
+                    <th>Expression</th>
+                    <th>Result</th>
+                </tr>
+            </thead>
+            <tbody>
+                {props.list.map(
+                    expr => <CalculationListRow key={expr.id} expr={expr} />
+                )}
+            </tbody>
+        </table>
     );
 }
 

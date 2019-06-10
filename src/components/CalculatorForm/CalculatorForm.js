@@ -54,6 +54,7 @@ class CalculatorForm extends Component {
                 operator: this.state.operator
             };
             this.props.submitExpression(expr);
+            this.clearInputs();
         }
     }
 
