@@ -5,8 +5,8 @@ import './App.css';
 import CalculationList from '../CalculationList/CalculationList';
 import CalculatorForm from '../CalculatorForm/CalculatorForm';
 
-let endpoint = 'https://fast-castle-54694.herokuapp.com';
-// let endpoint = 'http://localhost:5000';
+// let endpoint = 'https://fast-castle-54694.herokuapp.com';
+let endpoint = 'http://localhost:5000';
 
 class App extends Component {
     constructor() {
