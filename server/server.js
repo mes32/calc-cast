@@ -24,12 +24,6 @@ io.on('connect', socket => {
 
     socket.emit('list expressions', { expressionList: expressionList });
 
-    //Here we listen on a new namespace called "incoming data"
-    // socket.on('incoming data', (data) => {
-    //     //Here we broadcast it out to all other sockets EXCLUDING the socket which sent us the data
-    //     socket.broadcast.emit('outgoing data', { num: data });
-    // });
-
     socket.on('submit expression', expr => {
         console.log(expr);
 
@@ -51,6 +45,8 @@ io.on('connect', socket => {
     //A special namespace "disconnect" for when a client disconnects
     socket.on("disconnect", () => console.log("Client disconnected"));
 });
+
+setInterval(() => io.emit('time', new Date().toTimeString()), 1000);
 
 // Serve the static site files
 app.use(express.static('build'));
