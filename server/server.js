@@ -54,5 +54,5 @@ app.use(express.static('build'));
 // Start the server listening on PORT = 5000
 const PORT = process.env.PORT || 5000;
 server.listen(PORT, () => {
-    console.error(`Listening on port: ${PORT}`);
+    console.log(`Listening on port: ${PORT}`);
 });
