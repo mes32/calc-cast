@@ -5,10 +5,8 @@ import './App.css';
 import CalculationList from '../CalculationList/CalculationList';
 import CalculatorForm from '../CalculatorForm/CalculatorForm';
 
-let endpoint = 'localhost:5000';
-if (process.env.PORT) {
-    endpoint = 'https://fast-castle-54694.herokuapp.com:' + process.env.PORT;
-}
+let endpoint = 'fast-castle-54694.herokuapp.com:443';
+// let endpoint = 'localhost:5000';
 
 class App extends Component {
     constructor() {
