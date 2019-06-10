@@ -6,10 +6,10 @@ import './App.css';
 import CalculationList from '../CalculationList/CalculationList';
 import CalculatorForm from '../CalculatorForm/CalculatorForm';
 
-let endpoint = 'http://127.0.0.1:5000'
-// if (process.env.PORT) {
-    // let endpoint = 'https://fast-castle-54694.herokuapp.com:' + process.env.PORT;
-// }
+let endpoint = 'http://localhost:5000'
+if (process.env.HOST && process.env.PORT) {
+    endpoint = process.env.HOST + ':' + process.env.PORT;
+}
 
 class App extends Component {
 
@@ -21,8 +21,6 @@ class App extends Component {
     }
 
     componentDidMount() {
-        // const { endpoint } = this.state;
-        // //Very simply connect to the socket
         const socket = socketIOClient(endpoint);
         // //Listen for data on the "outgoing data" namespace and supply a callback for what to do when we get one. In this case, we set a state variable
         // socket.on("outgoing data", data => {
@@ -30,14 +28,10 @@ class App extends Component {
         //     console.log(`data.num = ${data.num}`);
         // });
 
-        // var socket = io();
-
         socket.on('time', timeString => {
-            console.log(timeString);
             this.setState({ timeString: timeString + '' });
         });
 
-        // this.setState({ timeString: timeString + '' });
     }
 
     render() {
