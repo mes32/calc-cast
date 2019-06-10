@@ -11,7 +11,7 @@ import CalculatorForm from '../CalculatorForm/CalculatorForm';
 class App extends Component {
     constructor() {
         super();
-        this.socket = io('https://fast-castle-54694.herokuapp.com/');
+        this.socket = io();
         this.state = {
             timeString: '',
             expressionList: []

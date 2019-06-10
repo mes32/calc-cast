@@ -1,19 +1,20 @@
 const express = require('express');
-const http = require('http');
 const socketIo = require('socket.io');
 
 const app = express();
-const server = http.createServer(app);
-const io = socketIo(server);
+// const server = http.createServer(app);
+
 
 // Serve the static site files from build directory
 app.use(express.static('build'));
 
 // Start the server listening on PORT = 5000
 const PORT = process.env.PORT || 5000;
-server.listen(PORT, () => {
+const server = app.listen(PORT, () => {
     console.log(`Listening on port: ${PORT}`);
 });
+
+const io = socketIo(server);
 
 let tempID = 0;
 const expressionList = [];
