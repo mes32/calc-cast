@@ -11,24 +11,24 @@ import CalculatorForm from '../CalculatorForm/CalculatorForm';
 class App extends Component {
     constructor() {
         super();
+        this.socket = io('https://fast-castle-54694.herokuapp.com/');
         this.state = {
             timeString: '',
-            socket: io(),
             expressionList: []
         };
 
-        this.state.socket.on('time', timeString => {
+        this.socket.on('time', timeString => {
             this.setState({ timeString: timeString + '' });
         });
 
-        this.state.socket.on('list expressions', response => {
+        this.socket.on('list expressions', response => {
             console.log(`list expressions: ${response.expressionList}`);
             this.setState({ ...this.state, expressionList: response.expressionList });
         });
     }
 
     submitExpression = (expr) => {
-        this.state.socket.emit('submit expression', expr);
+        this.socket.emit('submit expression', expr);
     }
 
     render() {
