@@ -6,9 +6,9 @@ import './App.css';
 import CalculationList from '../CalculationList/CalculationList';
 import CalculatorForm from '../CalculatorForm/CalculatorForm';
 
-// let endpoint = 'http://127.0.0.1:5000'
+let endpoint = 'http://127.0.0.1:5000'
 // if (process.env.PORT) {
-    let endpoint = 'https://fast-castle-54694.herokuapp.com:' + process.env.PORT;
+    // let endpoint = 'https://fast-castle-54694.herokuapp.com:' + process.env.PORT;
 // }
 
 class App extends Component {
@@ -32,9 +32,12 @@ class App extends Component {
 
         // var socket = io();
 
-        socket.on('time', function (timeString) {
-            this.setState({ timeString: timeString });
+        socket.on('time', timeString => {
+            console.log(timeString);
+            this.setState({ timeString: timeString + '' });
         });
+
+        // this.setState({ timeString: timeString + '' });
     }
 
     render() {
