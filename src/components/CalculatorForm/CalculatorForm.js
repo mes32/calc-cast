@@ -48,12 +48,12 @@ class CalculatorForm extends Component {
     handleSubmit = (event) => {
         event.preventDefault();
         if (this.state.argument1 && this.state.argument2 && this.state.operator) {
-            const calculation = {
+            const expr = {
                 arg1: this.state.argument1,
                 arg2: this.state.argument2,
                 operator: this.state.operator
             };
-            this.props.socket.emit('calculation', calculation);
+            this.props.submitExpression(expr);
         }
     }
 

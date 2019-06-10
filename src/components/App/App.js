@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import socketIOClient from 'socket.io-client';
-// import io from 'socket.io';
 import './App.css';
 
 import CalculationList from '../CalculationList/CalculationList';
@@ -12,12 +11,12 @@ if (process.env.HOST && process.env.PORT) {
 }
 
 class App extends Component {
-
     constructor() {
         super();
         this.state = {
             timeString: '',
-            socket: socketIOClient(endpoint)
+            socket: socketIOClient(endpoint),
+            expressionList: []
         };
 
         // const socket = socketIOClient(endpoint);
@@ -28,7 +27,12 @@ class App extends Component {
         // });
 
         this.state.socket.on('time', timeString => {
-            this.setState({ timeString: timeString + '' });
+            this.setState({ ...this.state, timeString: timeString + '' });
+        });
+
+        this.state.socket.on('list expressions', response => {
+            console.log(`list expressions: ${response.expressionList}`);
+            this.setState({ ...this.state, expressionList: response.expressionList });
         });
     }
 
@@ -45,11 +49,18 @@ class App extends Component {
     //     });
     // }
 
+    submitExpression = (expr) => {
+        this.state.socket.emit('submit expression', expr);
+    }
+
     render() {
         return (
             <div className="App">
-                <CalculatorForm socket={this.state.socket} />
+                <h1>Calc Cast</h1>
+                <CalculatorForm submitExpression={this.submitExpression} />
                 <CalculationList />
+
+                {JSON.stringify(this.state.expressionList)}
 
                 <p>timeString = {this.state.timeString} </p>
             </div>
