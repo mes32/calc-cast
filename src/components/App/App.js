@@ -16,28 +16,39 @@ class App extends Component {
     constructor() {
         super();
         this.state = {
-            timeString: ''
+            timeString: '',
+            socket: socketIOClient(endpoint)
         };
-    }
 
-    componentDidMount() {
-        const socket = socketIOClient(endpoint);
+        // const socket = socketIOClient(endpoint);
         // //Listen for data on the "outgoing data" namespace and supply a callback for what to do when we get one. In this case, we set a state variable
         // socket.on("outgoing data", data => {
         //     this.setState({ response: data.num });
         //     console.log(`data.num = ${data.num}`);
         // });
 
-        socket.on('time', timeString => {
+        this.state.socket.on('time', timeString => {
             this.setState({ timeString: timeString + '' });
         });
-
     }
+
+    // componentDidMount() {
+    //     const socket = socketIOClient(endpoint);
+    //     // //Listen for data on the "outgoing data" namespace and supply a callback for what to do when we get one. In this case, we set a state variable
+    //     // socket.on("outgoing data", data => {
+    //     //     this.setState({ response: data.num });
+    //     //     console.log(`data.num = ${data.num}`);
+    //     // });
+
+    //     socket.on('time', timeString => {
+    //         this.setState({ timeString: timeString + '' });
+    //     });
+    // }
 
     render() {
         return (
             <div className="App">
-                <CalculatorForm />
+                <CalculatorForm socket={this.state.socket} />
                 <CalculationList />
 
                 <p>timeString = {this.state.timeString} </p>

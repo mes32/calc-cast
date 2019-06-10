@@ -29,6 +29,10 @@ io.on("connection", socket => {
         socket.broadcast.emit("outgoing data", { num: data });
     });
 
+    socket.on('calculation', (data) => {
+        console.log(data);
+    });
+
     //A special namespace "disconnect" for when a client disconnects
     socket.on("disconnect", () => console.log("Client disconnected"));
 });
