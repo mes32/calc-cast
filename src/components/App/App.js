@@ -9,23 +9,18 @@ class App extends Component {
     constructor() {
         super();
         this.socket = io();
-        this.state = {
-            timeString: '',
-            expressionList: []
-        };
-
         this.socket.on('time', timeString => {
             this.setState({ timeString: timeString + '' });
         });
 
-        // this.socket.on('list expressions', response => {
-        //     console.log(`list expressions: ${response.expressionList}`);
-        //     this.setState({ ...this.state, expressionList: response.expressionList });
-        // });
-    }
-
-    componentDidMount() {
-        
+        this.socket.on('list expressions', response => {
+            console.log(`list expressions: ${response.expressionList}`);
+            this.setState({ ...this.state, expressionList: response.expressionList });
+        });
+        this.state = {
+            timeString: '',
+            expressionList: []
+        };
     }
 
     submitExpression = (expr) => {
