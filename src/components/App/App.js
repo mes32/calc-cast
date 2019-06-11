@@ -1,30 +1,36 @@
 import React, { Component } from 'react';
-import io from 'socket.io-client';
 import './App.css';
 
 import CalculationList from '../CalculationList/CalculationList';
 import CalculatorForm from '../CalculatorForm/CalculatorForm';
+import ClientSocket from '../../classes/ClientSocket';
 
 class App extends Component {
     constructor() {
         super();
-        this.socket = io();
-        this.socket.on('time', timeString => {
-            this.setState({ timeString: timeString + '' });
-        });
-
-        this.socket.on('list expressions', response => {
-            console.log(`list expressions: ${response.expressionList}`);
-            this.setState({ ...this.state, expressionList: response.expressionList });
-        });
+        this.socket = new ClientSocket(this);
         this.state = {
             timeString: '',
             expressionList: []
         };
     }
 
+    updateExpressionList = (newList) => {
+        this.setState({
+            ...this.state, 
+            expressionList: newList 
+        });
+    }
+
+    updateTime = (newTimeString) => {
+        this.setState({ 
+            ...this.state,
+            timeString: newTimeString
+        });
+    }
+
     submitExpression = (expr) => {
-        this.socket.emit('submit expression', expr);
+        this.socket.emitExpression(expr);
     }
 
     render() {

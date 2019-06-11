@@ -4,8 +4,8 @@ class CalculatorForm extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            argument1: '',
-            argument2: '',
+            arg1: '',
+            arg2: '',
             operator: ''
         };
     }
@@ -47,10 +47,10 @@ class CalculatorForm extends Component {
 
     handleSubmit = (event) => {
         event.preventDefault();
-        if (this.state.argument1 && this.state.argument2 && this.state.operator) {
+        if (this.state.arg1 && this.state.arg2 && this.state.operator) {
             const expr = {
-                arg1: this.state.argument1,
-                arg2: this.state.argument2,
+                arg1: Number(this.state.arg1),
+                arg2: Number(this.state.arg2),
                 operator: this.state.operator
             };
             this.props.submitExpression(expr);
@@ -60,8 +60,8 @@ class CalculatorForm extends Component {
 
     clearInputs = () => {
         this.setState({
-            argument1: '',
-            argument2: '',
+            arg1: '',
+            arg2: '',
             operator: ''
         });
     }
@@ -69,12 +69,12 @@ class CalculatorForm extends Component {
     render() {
         return (
             <form onSubmit={this.handleSubmit}>
-                <input type="number" name="argument1" onChange={this.handleChange} value={this.state.argument1} placeholder="argument 1" />
+                <input type="number" name="arg1" onChange={this.handleChange} value={this.state.arg1} placeholder="argument 1" />
                 <input type="button" onClick={this.setAddition} value="+" />
                 <input type="button" onClick={this.setSubtraction} value="−" />
                 <input type="button" onClick={this.setMultiplication} value="×" />
                 <input type="button" onClick={this.setDivision} value="÷" />
-                <input type="number" name="argument2" onChange={this.handleChange} value={this.state.argument2} placeholder="argument 2" />
+                <input type="number" name="arg2" onChange={this.handleChange} value={this.state.arg2} placeholder="argument 2" />
                 <input type="submit" value="=" />
                 <input type="button" onClick={this.clearInputs} value="clear" />
             </form>
