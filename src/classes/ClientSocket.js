@@ -4,8 +4,8 @@ class ClientSocket {
     constructor(app) {
         this.socket = io();
 
-        this.socket.on('list expressions', response => {
-            app.updateExpressionList(response.expressionList);
+        this.socket.on('list expressions', expressionList => {
+            app.updateExpressionList(expressionList);
         });
 
         this.socket.on('time', time => {

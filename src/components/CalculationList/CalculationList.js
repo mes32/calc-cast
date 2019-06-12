@@ -12,7 +12,7 @@ function CalculationList(props) {
                 </tr>
             </thead>
             <tbody>
-                {props.list.map(
+                {props.expressionList.map(
                     expr => <CalculationListRow key={expr.id} expr={expr} />
                 )}
             </tbody>

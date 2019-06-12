@@ -39,7 +39,7 @@ class App extends Component {
                 <h1>Calc Cast</h1>
                 <CalculatorForm submitExpression={this.submitExpression} />
                 <h2>Calculation History</h2>
-                <CalculationList list={this.state.expressionList} />
+                <CalculationList expressionList={this.state.expressionList} />
                 {this.state.timeString}
             </div>
         );
