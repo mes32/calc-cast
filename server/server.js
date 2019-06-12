@@ -1,11 +1,7 @@
 const express = require('express');
-
-
 const socketIo = require('socket.io');
 
 const app = express();
-// const server = http.createServer(app);
-
 
 // Serve the static site files from build directory
 app.use(express.static('build'));
@@ -23,13 +19,10 @@ const expressionList = [];
 
 //Setting up a socket with the namespace 'connection' for new sockets
 io.on('connect', socket => {
-    console.log('New client connected');
-
+    
     socket.emit('list expressions', { expressionList: expressionList });
 
     socket.on('submit expression', expr => {
-        console.log(expr);
-
         tempID += 1;
         if (expr.operator === 'ADD') {
             expr = { ...expr, id: tempID, value: Number(expr.arg1) + Number(expr.arg2) };
@@ -40,12 +33,10 @@ io.on('connect', socket => {
         } else if (expr.operator === 'DIV') {
             expr = { ...expr, id: tempID, value: Number(expr.arg1) / Number(expr.arg2) };
         }
-
         expressionList.push(expr);
         socket.emit('list expressions', { expressionList: expressionList });
     });
 
-    //A special namespace "disconnect" for when a client disconnects
     socket.on("disconnect", () => console.log("Client disconnected"));
 });
 
