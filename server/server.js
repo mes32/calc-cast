@@ -1,6 +1,5 @@
 const express = require('express');
-const socketIo = require('socket.io');
-const ServerSocket = require('./modules/ServerSocket');
+const ServerSocket = require('./classes/ServerSocket');
 
 const app = express();
 
@@ -13,34 +12,4 @@ const server = app.listen(PORT, () => {
     console.log(`Listening on port: ${PORT}`);
 });
 
-const socket = new ServerSocket(server);
-
-// const io = socketIo(server);
-
-// let tempID = 0;
-// const expressionList = [];
-
-// //Setting up a socket with the namespace 'connection' for new sockets
-// io.on('connect', socket => {
-    
-//     socket.emit('list expressions', { expressionList: expressionList });
-
-//     socket.on('submit expression', expr => {
-//         tempID += 1;
-//         if (expr.operator === 'ADD') {
-//             expr = { ...expr, id: tempID, value: Number(expr.arg1) + Number(expr.arg2) };
-//         } else if (expr.operator === 'SUB') {
-//             expr = { ...expr, id: tempID, value: Number(expr.arg1) - Number(expr.arg2) };
-//         } else if (expr.operator === 'MUL') {
-//             expr = { ...expr, id: tempID, value: Number(expr.arg1) * Number(expr.arg2) };
-//         } else if (expr.operator === 'DIV') {
-//             expr = { ...expr, id: tempID, value: Number(expr.arg1) / Number(expr.arg2) };
-//         }
-//         expressionList.push(expr);
-//         socket.emit('list expressions', { expressionList: expressionList });
-//     });
-
-//     socket.on("disconnect", () => console.log("Client disconnected"));
-// });
-
-// setInterval(() => io.emit('time', new Date().toTimeString()), 1000);
+new ServerSocket(server);
