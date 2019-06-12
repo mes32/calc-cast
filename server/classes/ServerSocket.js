@@ -1,5 +1,6 @@
 const socketIo = require('socket.io');
 const DatabaseClient = require('../classes/DatabaseClient');
+const EvaluatedExpression = require('../classes/EvaluatedExpression');
 
 class ServerSocket {
     constructor(server) {
@@ -12,22 +13,13 @@ class ServerSocket {
         this.socket.on('connect', clientSocket => {
             console.log('New client connected');
 
-            // connected.emit('list expressions', { expressionList: expressionList });
             this.emitExpressions(clientSocket, expressionList);
 
             clientSocket.on('submit expression', expr => {
                 tempID += 1;
-                if (expr.operator === 'ADD') {
-                    expr = { ...expr, id: tempID, value: Number(expr.arg1) + Number(expr.arg2) };
-                } else if (expr.operator === 'SUB') {
-                    expr = { ...expr, id: tempID, value: Number(expr.arg1) - Number(expr.arg2) };
-                } else if (expr.operator === 'MUL') {
-                    expr = { ...expr, id: tempID, value: Number(expr.arg1) * Number(expr.arg2) };
-                } else if (expr.operator === 'DIV') {
-                    expr = { ...expr, id: tempID, value: Number(expr.arg1) / Number(expr.arg2) };
-                }
+                const evaluatedExpr = new EvaluatedExpression(expr);
+                expr = { ...expr, id: tempID, value: evaluatedExpr.ans };
                 expressionList.push(expr);
-                // connected.emit('list expressions', { expressionList: expressionList });
                 this.emitExpressions(clientSocket, expressionList);
             });
 
