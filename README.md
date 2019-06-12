@@ -58,9 +58,9 @@ heroku pg:psql -f database_schema.sql
 - [x] Server clock time is broadcast at one second intervals
 - [x] Sockets broadcast recent history of evaluated expressions
 - [x] History of evaluated expressions expressions are listed in a table
+- [x] Calculation history saved in sever-side database
 
 ### Planned Features
-- [ ] Calculation history saved in sever-side database
 - [ ] Basic CSS styling
 - [ ] Users can selectively remove entries from calculation history
 - [ ] Users can selectively re-run calculations in history
