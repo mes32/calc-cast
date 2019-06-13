@@ -15,13 +15,13 @@ class ServerSocket {
             clientSocket.on('submit expression', expr => {
                 const evaluatedExpr = new EvaluatedExpression(expr);
                 this.database.insertExpression(evaluatedExpr).then(() => {
-                    this.emitExpressions(clientSocket);
+                    this.emitExpressions(this.socket);
                 });
             });
 
             clientSocket.on('delete expression', expr => {
                 this.database.deleteExpression(expr).then(() => {
-                    this.emitExpressions(clientSocket);
+                    this.emitExpressions(this.socket);
                 });
             });
 
