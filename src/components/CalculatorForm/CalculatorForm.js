@@ -1,9 +1,6 @@
 import React, { Component } from 'react';
 
-const formStyle = {
-    backgroundColor: '#d8d8d8',
-    padding: '1rem 80px'
-}
+import './CalculatorForm.css';
 
 class CalculatorForm extends Component {
     constructor(props) {
@@ -73,12 +70,12 @@ class CalculatorForm extends Component {
 
     render() {
         return (
-            <form onSubmit={this.handleSubmit} style={formStyle}>
+            <form onSubmit={this.handleSubmit}>
                 <input type="number" name="arg1" onChange={this.handleChange} value={this.state.arg1} placeholder="argument 1" />
-                <input type="button" onClick={this.setAddition} value="+" />
-                <input type="button" onClick={this.setSubtraction} value="−" />
-                <input type="button" onClick={this.setMultiplication} value="×" />
-                <input type="button" onClick={this.setDivision} value="÷" />
+                <input type="button" className={this.state.operator === 'ADD' ? 'selectedOperator' : ''} onClick={this.setAddition} value="+" />
+                <input type="button" className={this.state.operator === 'SUB' ? 'selectedOperator' : ''} onClick={this.setSubtraction} value="−" />
+                <input type="button" className={this.state.operator === 'MUL' ? 'selectedOperator' : ''} onClick={this.setMultiplication} value="×" />
+                <input type="button" className={this.state.operator === 'DIV' ? 'selectedOperator' : ''} onClick={this.setDivision} value="÷" />
                 <input type="number" name="arg2" onChange={this.handleChange} value={this.state.arg2} placeholder="argument 2" />
                 <input type="submit" value="=" />
                 <input type="button" onClick={this.clearInputs} value="clear" />
