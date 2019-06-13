@@ -1,0 +1,28 @@
+.calculationListDiv {
+    margin: 2rem 80px;
+}
+
+.calculationListTable {
+    border-bottom: 4px solid rgb(48, 157, 252);
+    border-collapse: collapse;
+    box-shadow: 5px 5px 20px -5px rgba(0,0,0,0.20);
+}
+
+.calculationListTable th, .calculationListTable td {
+    padding: 0.4rem 20px;
+    text-align: left;
+}
+
+.calculationListTable th {
+    font-weight: bold;
+    background-color: rgb(48, 157, 252);
+    color: white;
+}
+
+.calculationListTable tr:nth-child(even) {
+    background-color: aliceblue;
+}
+
+.calculationListTable td:nth-child(1) {
+    text-align: right;
+} 

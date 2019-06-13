@@ -29,7 +29,7 @@ class ServerSocket {
     }
 
     emitTime(connection) {
-        connection.emit('time', new Date().toTimeString());
+        connection.emit('time', new Date().toUTCString());
     }
 
     async emitExpressions(connection) {

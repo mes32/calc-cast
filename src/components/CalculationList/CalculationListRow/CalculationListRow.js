@@ -4,6 +4,7 @@ function CalculationList(props) {
     const arg1 = props.expr.arg1;
     const arg2 = props.expr.arg2;
     const ans = props.expr.ans;
+    const time = new Date(props.expr.time).toUTCString();
 
     let operator = '???';
     if (props.expr.operator === 'ADD') {
@@ -20,6 +21,7 @@ function CalculationList(props) {
         <tr>
             <td>{arg1} {operator} {arg2}</td>
             <td>{ans}</td>
+            <td>{time}</td>
         </tr>
     );
 }

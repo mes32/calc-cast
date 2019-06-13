@@ -1,5 +1,10 @@
 import React, { Component } from 'react';
 
+const formStyle = {
+    backgroundColor: '#d8d8d8',
+    padding: '1rem 80px'
+}
+
 class CalculatorForm extends Component {
     constructor(props) {
         super(props);
@@ -68,7 +73,7 @@ class CalculatorForm extends Component {
 
     render() {
         return (
-            <form onSubmit={this.handleSubmit}>
+            <form onSubmit={this.handleSubmit} style={formStyle}>
                 <input type="number" name="arg1" onChange={this.handleChange} value={this.state.arg1} placeholder="argument 1" />
                 <input type="button" onClick={this.setAddition} value="+" />
                 <input type="button" onClick={this.setSubtraction} value="−" />

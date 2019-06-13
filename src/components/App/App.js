@@ -4,6 +4,8 @@ import './App.css';
 import CalculationList from '../CalculationList/CalculationList';
 import CalculatorForm from '../CalculatorForm/CalculatorForm';
 import ClientSocket from '../../classes/ClientSocket';
+import Header from '../Header/Header';
+import ServerClock from '../ServerClock/ServerClock';
 
 class App extends Component {
     constructor() {
@@ -17,15 +19,13 @@ class App extends Component {
 
     updateExpressionList = (newList) => {
         this.setState({
-            ...this.state, 
             expressionList: newList 
         });
     }
 
-    updateTime = (newTimeString) => {
-        this.setState({ 
-            ...this.state,
-            timeString: newTimeString
+    updateTime = (timeString) => {
+        this.setState({
+            timeString: timeString
         });
     }
 
@@ -36,11 +36,10 @@ class App extends Component {
     render() {
         return (
             <div className="App">
-                <h1>Calc Cast</h1>
+                <Header />
                 <CalculatorForm submitExpression={this.submitExpression} />
-                <h2>Calculation History</h2>
                 <CalculationList expressionList={this.state.expressionList} />
-                {this.state.timeString}
+                <ServerClock timeString={this.state.timeString} />
             </div>
         );
     }
