@@ -50,6 +50,28 @@ class DatabaseClient {
             client.release();
         }
     }
+
+    async deleteExpression(expr) {
+        const id = expr.id;
+        const deleteSQL = `
+        DELETE
+            FROM calc_history
+            WHERE id = $1;
+        `;
+        const client = await pool.connect();
+        try {
+            await client.query('BEGIN');
+            await client.query(deleteSQL, [id]);
+            await client.query('COMMIT');
+        } catch (queryError) {
+            await client('ROLLBACK');
+            const errorMessage = `SQL error using 'deleteExpression()', ${queryError}`;
+            await console.log(errorMessage);
+            throw new Error(errorMessage);
+        } finally {
+            client.release();
+        }
+    }
 }
 
 module.exports = DatabaseClient;

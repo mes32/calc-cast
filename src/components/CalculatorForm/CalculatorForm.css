@@ -46,8 +46,7 @@ input[type=submit] {
     border: 2px solid rgb(42, 126, 201);
     border-radius: 5px;
     cursor: pointer;
-    padding-left: 20px;
-    padding-right: 20px;
+    padding: 0.2rem 20px;
 }
 
 input[type=submit]:hover {

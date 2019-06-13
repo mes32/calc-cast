@@ -33,12 +33,16 @@ class App extends Component {
         this.socket.emitExpression(expr);
     }
 
+    deleteExpression = (expr) => {
+        this.socket.deleteExpression(expr);
+    }
+
     render() {
         return (
             <div className="App">
                 <Header />
                 <CalculatorForm submitExpression={this.submitExpression} />
-                <CalculationList expressionList={this.state.expressionList} />
+                <CalculationList expressionList={this.state.expressionList} deleteExpression={this.deleteExpression} />
                 <ServerClock timeString={this.state.timeString} />
             </div>
         );

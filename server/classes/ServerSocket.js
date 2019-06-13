@@ -19,6 +19,12 @@ class ServerSocket {
                 });
             });
 
+            clientSocket.on('delete expression', expr => {
+                this.database.deleteExpression(expr).then(() => {
+                    this.emitExpressions(clientSocket);
+                });
+            });
+
             clientSocket.on('disconnect', () => {
                 console.log('Client disconnected');
             });

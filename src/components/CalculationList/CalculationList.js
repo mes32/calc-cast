@@ -13,11 +13,12 @@ function CalculationList(props) {
                         <th>Expression</th>
                         <th>Result</th>
                         <th>Calculation Timestamp</th>
+                        <th></th>
                     </tr>
                 </thead>
                 <tbody>
                     {props.expressionList.map(
-                        expr => <CalculationListRow key={expr.id} expr={expr} />
+                        expr => <CalculationListRow key={expr.id} expr={expr} deleteExpression={props.deleteExpression} />
                     )}
                 </tbody>
             </table>

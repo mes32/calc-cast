@@ -22,6 +22,7 @@ function CalculationList(props) {
             <td>{arg1} {operator} {arg2}</td>
             <td>{ans}</td>
             <td>{time}</td>
+            <td><input type="button" onClick={() => props.deleteExpression(props.expr)} value="delete" /></td>
         </tr>
     );
 }

@@ -16,6 +16,10 @@ class ClientSocket {
     emitExpression = (expr) => {
         this.socket.emit('submit expression', expr);
     }
+
+    deleteExpression = (expr) => {
+        this.socket.emit('delete expression', expr);
+    }
 }
 
 export default ClientSocket;

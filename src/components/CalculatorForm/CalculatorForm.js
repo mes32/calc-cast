@@ -78,7 +78,7 @@ class CalculatorForm extends Component {
                 <input type="button" className={this.state.operator === 'DIV' ? 'selectedOperator' : ''} onClick={this.setDivision} value="÷" />
                 <input type="number" name="arg2" onChange={this.handleChange} value={this.state.arg2} placeholder="argument 2" />
                 <input type="submit" value="=" />
-                <input type="button" onClick={this.clearInputs} value="clear" />
+                <input type="button" onClick={this.clearInputs} value="Clear" />
             </form>
         );
     }

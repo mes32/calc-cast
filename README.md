@@ -60,11 +60,11 @@ heroku pg:psql -f database_schema.sql
 - [x] History of evaluated expressions expressions are listed in a table
 - [x] Calculation history saved in sever-side database
 - [x] Basic CSS styling
+- [x] Users can selectively remove entries from calculation history
 
 ### Planned Features
-- [ ] Users can selectively remove entries from calculation history
 - [ ] Users can selectively re-run calculations in history
-- [ ] Descriptive alerts shown for incomplete inputs
+- [ ] Discriptive alerts shown for incomplete/invalid inputs
 - [ ] Unit testing
 
 ## Authors
