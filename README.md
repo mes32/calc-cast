@@ -1,4 +1,7 @@
 # Calc Cast
+
+[![Actions Status](https://github.com/mes32/calc-cast/workflows/Node_CI/badge.svg)](https://github.com/mes32/calc-cast/actions)
+
 Server-side calculator that broadcasts calculation history to all users via websockets. See a deployed instance of this project here: [https://fast-castle-54694.herokuapp.com/](https://fast-castle-54694.herokuapp.com/).
 
 ## Utilized Web Stack
