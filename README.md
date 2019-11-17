@@ -1,5 +1,5 @@
 # Calc Cast
-![](https://github.com/actions/hello-world/workflows/Greet%20Everyone/badge.svg)
+![](https://github.com/mes32/calc-cast/workflows/Node%20CI/badge.svg)
 
 Server-side calculator that broadcasts calculation history to all users via websockets. See a deployed instance of this project here: [https://fast-castle-54694.herokuapp.com/](https://fast-castle-54694.herokuapp.com/).
 
